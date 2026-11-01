@@ -24,15 +24,22 @@
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation"><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
-        <a href="#threats">Threat Intelligence</a>
         <a href="#messaging">Secure Messaging</a>
+        <a href="#threats">Threat Intelligence</a>
+        <a href="#dashboard">Risk Calculator</a>
         <a href="#algorithms">PQC Algorithms</a>
+        <a href="#file-vault">File Vault</a>
         <a href="#benchmark">Benchmarking</a>
         <a href="#migration">Migration Center</a>
         <a href="#advisor">AI Advisor</a>
         <a href="#learning">Learning Hub</a>
       </div>
-      
+      <div class="nav-status-wrap">
+        <div class="backend-status-pill" id="backendStatusPill" title="Live connection status with Flask API">
+          <i class="status-pulse"></i>
+          <span id="backendStatusText">Connecting...</span>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -43,10 +50,6 @@
           <div class="eyebrow"><span class="eyebrow-icon">✳</span> THE POST-QUANTUM READINESS PLATFORM</div>
           <h1>Secure today.<br><span class="gradient-text">Quantum safe</span><br>tomorrow.</h1>
           <p class="hero-lede">QSentinal helps teams understand quantum threats, evaluate cryptographic risk, and prepare for a postquantum future with clear, actionable intelligence.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#dashboard">Explore platform <span>↗</span></a>
-            <button class="button button-quiet" id="runHeroDemo"><span class="play-icon">▶</span> Run live demo</button>
-          </div>
           <div class="hero-proof">
             <div class="avatar-stack" aria-hidden="true"><span>Q</span><span>R</span><span>+</span></div>
             <div><strong>Built for the transition</strong><small>Security teams · Developers · Researchers</small></div>
@@ -71,10 +74,142 @@
       </div>
     </section>
 
-    <section class="section section-soft" id="threats">
+    <section class="section section-soft" id="messaging">
       <div class="container">
         <div class="section-heading split-heading">
-          <div><div class="eyebrow">01 / THE QUANTUM CHALLENGE</div><h2>Tomorrow's threat.<br><span class="gradient-text">Today's decision.</span></h2></div>
+          <div><div class="eyebrow">01 / SECURE COMMUNICATION &amp; HYBRID ENCRYPTION</div><h2>Make the invisible<br><span class="gradient-text">security visible.</span></h2></div>
+          <p>Real client-side hybrid encryption: NIST FIPS 203 ML-KEM-768 key establishment + HKDF-SHA-256 + AES-256-GCM authenticated encryption. Nothing leaves your browser.</p>
+        </div>
+        <div class="messaging-layout">
+          <div class="message-panel">
+            <div class="panel-heading"><div class="person-avatar alice">A</div><div><b>Alice</b><small>Message sender</small></div><span class="connection-status"><i></i> READY</span></div>
+            <label for="messageInput">Your message</label>
+            <textarea id="messageInput" rows="4" maxlength="10000" placeholder="Type a message to encrypt with ML-KEM-768 + AES-256-GCM...">The project review is scheduled for Thursday at 10 AM.</textarea>
+            <div class="message-meta"><span>Client-side hybrid encryption</span><span id="messageCount">58 / 10,000</span></div>
+            <button class="button button-primary full-button" id="sendMessageButton" type="button">Encrypt &amp; Send <span>→</span></button>
+            
+            <div class="messaging-actions-row">
+              <button class="button button-secondary button-sm" id="resetMessagingButton" type="button" title="Clear keys, shared secrets, and outputs from memory">Reset Session</button>
+              <button class="button button-secondary button-sm" id="downloadPackageBtn" type="button" disabled title="Download encrypted package as JSON">Download Package (.json)</button>
+            </div>
+
+            <div class="test-controls-box">
+              <span class="card-label">INTEGRITY &amp; KEY TESTS</span>
+              <div class="test-btn-grid">
+                <button class="button button-quiet button-sm" id="tamperCipherButton" type="button" disabled title="Flip one bit in the ciphertext to verify AES-GCM authentication failure">Tamper Ciphertext (1-Bit Flip)</button>
+                <button class="button button-quiet button-sm" id="wrongKeyButton" type="button" disabled title="Attempt to decrypt with a different ML-KEM-768 private key">Test Wrong Key</button>
+              </div>
+            </div>
+
+            <div class="lib-error-box" id="libErrorBox" hidden style="display:none;" role="alert">
+              <p id="libErrorMsg">Failed to load post-quantum library.</p>
+              <button class="button button-secondary button-sm" id="retryLibBtn" type="button">Retry Load</button>
+            </div>
+
+            <div class="message-note educational-disclaimer">
+              <strong>Educational Disclaimer:</strong> This is an educational hybrid-encryption demo using a real FIPS 203 ML-KEM implementation and Web Crypto AES-256-GCM. It is NOT FIPS 140-validated and is not a full secure-messaging protocol (no sender authentication, no forward-secrecy ratchet, no replay protection). A KEM gives key establishment only. All cryptographic operations run strictly in-memory client-side.
+            </div>
+          </div>
+
+          <div class="workflow-panel">
+            <div class="workflow-top"><span class="card-label">COMMUNICATION PIPELINE</span><span class="workflow-state" id="workflowState">AWAITING INPUT</span></div>
+            <div class="workflow-line">
+              <div class="workflow-node" data-step="0"><span>01</span><i>⌘</i><b>Key establishment</b><small>ML-KEM-768 (FIPS 203)</small></div>
+              <div class="workflow-connector"></div>
+              <div class="workflow-node" data-step="1"><span>02</span><i>◈</i><b>Shared secret</b><small>HKDF-SHA-256</small></div>
+              <div class="workflow-connector"></div>
+              <div class="workflow-node" data-step="2"><span>03</span><i>▧</i><b>Encryption</b><small>AES-256-GCM</small></div>
+              <div class="workflow-connector"></div>
+              <div class="workflow-node" data-step="3"><span>04</span><i>✓</i><b>Bob receives</b><small>Decaps &amp; Decrypt</small></div>
+            </div>
+
+            <div class="workflow-result" id="workflowResult" aria-live="polite">
+              <div class="result-lock">⌑</div>
+              <div><b>Waiting for a secure session</b><p>Click "Encrypt &amp; Send" to run real ML-KEM-768 key encapsulation and AES-256-GCM in-browser.</p></div>
+            </div>
+
+            <div class="message-details" id="messageDetails">
+              <div><span>SESSION STATUS</span><b id="sessionStatusVal">Awaiting Session</b></div>
+              <div><span>KEY EXCHANGE</span><b id="keyExchangeVal">ML-KEM-768 · real (FIPS 203)</b></div>
+              <div><span>DATA PROTECTION</span><b id="dataProtectionVal">AES-256-GCM · real</b></div>
+              <div><span>RECIPIENT</span><b id="recipientVal">Bob</b></div>
+            </div>
+
+            <div class="decrypted-box" id="decryptedBox" hidden aria-live="polite">
+              <div class="decrypted-head">
+                <span class="card-label">DECRYPTED BY BOB</span>
+                <span class="verify-pill" id="roundtripStatus">Round trip verified: plaintext matches</span>
+              </div>
+              <div class="decrypted-content" id="decryptedPlaintext"></div>
+            </div>
+
+            <div class="size-summary-box" id="sizeSummary" hidden>
+              <div class="size-summary-head"><span class="card-label">TRANSMISSION SIZE BREAKDOWN</span></div>
+              <div class="size-metrics-grid">
+                <div class="size-metric"><span>Plaintext</span><strong id="plaintextSize">—</strong></div>
+                <div class="size-metric"><span>KEM Ciphertext</span><strong id="kemSize">—</strong></div>
+                <div class="size-metric"><span>IV</span><strong id="ivSize">—</strong></div>
+                <div class="size-metric"><span>AES Ciphertext</span><strong id="aesCipherSize">—</strong></div>
+                <div class="size-metric"><span>Auth Tag</span><strong id="tagSize">—</strong></div>
+                <div class="size-metric total"><span>Total Transmitted</span><strong id="totalTransmittedSize">—</strong></div>
+              </div>
+            </div>
+
+            <div class="artifacts-container" id="artifactsContainer" hidden>
+              <div class="artifacts-head"><span class="card-label">CRYPTOGRAPHIC ARTIFACTS</span></div>
+              <div class="artifacts-grid">
+                <div class="artifact-card">
+                  <div class="artifact-meta"><span>KEM CIPHERTEXT (ML-KEM-768, 1,088 B)</span><button class="copy-btn" data-copy="kemCipher" type="button" title="Copy KEM Ciphertext Hex">Copy Hex</button></div>
+                  <code id="kemCiphertextDisplay">—</code>
+                </div>
+                <div class="artifact-card">
+                  <div class="artifact-meta"><span>INITIALIZATION VECTOR (12 B HEX)</span><button class="copy-btn" data-copy="iv" type="button" title="Copy IV Hex">Copy Hex</button></div>
+                  <code id="ivDisplay">—</code>
+                </div>
+                <div class="artifact-card">
+                  <div class="artifact-meta"><span>AES-256-GCM CIPHERTEXT (BASE64)</span><button class="copy-btn" data-copy="aesCipher" type="button" title="Copy AES Ciphertext Base64">Copy Base64</button></div>
+                  <code id="aesCiphertextDisplay">—</code>
+                </div>
+                <div class="artifact-card">
+                  <div class="artifact-meta"><span>AUTHENTICATION TAG (16 B HEX)</span><button class="copy-btn" data-copy="authTag" type="button" title="Copy Auth Tag Hex">Copy Hex</button></div>
+                  <code id="authTagDisplay">—</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="package-panel">
+              <div class="package-head">
+                <span class="card-label">IMPORT &amp; DECRYPT PACKAGE</span>
+                <div>
+                  <button class="button button-quiet button-sm" id="uploadPackageBtn" type="button">Upload Package (.json)</button>
+                  <input type="file" id="packageFileInput" accept=".json" hidden>
+                </div>
+              </div>
+              <div class="package-inputs-grid">
+                <div>
+                  <label for="importPackageInput">Package JSON (kemCiphertext, iv, ciphertext, tag)</label>
+                  <textarea id="importPackageInput" rows="3" placeholder="Paste exported JSON package here..."></textarea>
+                </div>
+                <div>
+                  <label for="importSecretKeyInput">Bob's Secret Key Hex (Optional if already in memory)</label>
+                  <textarea id="importSecretKeyInput" rows="3" placeholder="Leave blank to use current active in-memory Bob key, or paste 2,400-byte hex key..."></textarea>
+                </div>
+              </div>
+              <div class="package-actions">
+                <button class="button button-primary button-sm" id="decryptPackageBtn" type="button">Decrypt Package <span>→</span></button>
+                <div class="package-result" id="packageResult" aria-live="polite"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="threats">
+      <div class="container">
+        <div class="section-heading split-heading">
+          <div><div class="eyebrow">02 / THE QUANTUM CHALLENGE</div><h2>Tomorrow's threat.<br><span class="gradient-text">Today's decision.</span></h2></div>
           <p>Quantum computing changes the long-term security assumptions behind widely deployed public-key cryptography. Preparation starts with knowing where you rely on it.</p>
         </div>
         <div class="threat-intro-grid">
@@ -116,71 +251,166 @@
       </div>
     </section>
 
-    <section class="section" id="dashboard">
+    <section class="section section-soft" id="dashboard">
       <div class="container">
         <div class="section-heading split-heading">
-          <div><div class="eyebrow">02 / QUANTUM THREAT INTELLIGENCE</div><h2>See your exposure.<br><span class="gradient-text">Prioritize what matters.</span></h2></div>
-          <p>A guided readiness snapshot based on your environment. Adjust the inputs to see how cryptographic dependencies influence the illustrative risk profile.</p>
-        </div>
-        <div class="dashboard-shell">
-          <div class="dashboard-top"><div class="dashboard-title"><span class="window-dots"><i></i><i></i><i></i></span><b>Organization risk overview</b><span class="demo-tag">DEMO DATA</span></div><span class="updated-label">● Sample assessment · Local preview</span></div>
-          <div class="dashboard-controls">
-            <label>Industry<select id="industrySelect"><option value="banking">Banking & finance</option><option value="healthcare">Healthcare</option><option value="government">Government</option><option value="cloud">Cloud infrastructure</option><option value="enterprise">Enterprise</option><option value="iot">IoT</option></select></label>
-            <label>Current algorithm<select id="algorithmSelect"><option value="rsa">RSA</option><option value="ecc">ECC / ECDSA</option><option value="hybrid">Hybrid / mixed</option><option value="pqc">PQC deployed</option></select></label>
-            <label>Infrastructure<select id="infraSelect"><option value="hybrid">Hybrid cloud</option><option value="onprem">On-premises</option><option value="cloud">Public cloud</option><option value="iot">Connected devices</option></select></label>
-            <button class="button button-primary assess-button" id="assessButton">Assess exposure <span>→</span></button>
+          <div>
+            <div class="eyebrow"><span class="eyebrow-icon">⌘</span> ALGORITHMIC ASSESSMENT</div>
+            <h2>Dynamic Quantum<br><span class="gradient-text">Risk Calculator.</span></h2>
           </div>
-          <div class="dashboard-body">
-            <div class="risk-score-card">
-              <div class="card-label">QUANTUM EXPOSURE SCORE <span class="info-dot" title="Illustrative score, not a certified audit">i</span></div>
-              <div class="score-ring" id="scoreRing"><div><strong id="riskScore">72</strong><small>/ 100</small></div></div>
-              <span class="risk-status high" id="riskStatus">Elevated exposure</span>
-              <p id="riskSummary">Legacy public-key dependencies and long-lived sensitive data may increase future exposure.</p>
-              <div class="score-foot"><span>Readiness index</span><b id="readinessLabel">28 / 100</b></div>
-            </div>
-            <div class="dashboard-main">
-              <div class="dash-card vulnerability-card"><div class="dash-card-head"><div><span class="card-label">EXPOSURE BREAKDOWN</span><h4>Cryptographic dependencies</h4></div><span class="tiny-badge">Illustrative</span></div><div class="dependency-row"><div class="dep-label"><span class="dep-dot red"></span>RSA key exchange / signatures</div><b id="rsaExposure">High</b><div class="dep-bar"><i style="width:86%"></i></div></div><div class="dependency-row"><div class="dep-label"><span class="dep-dot orange"></span>ECC / ECDSA</div><b id="eccExposure">High</b><div class="dep-bar"><i style="width:74%"></i></div></div><div class="dependency-row"><div class="dep-label"><span class="dep-dot green"></span>PQC adoption</div><b id="pqcExposure">Not detected</b><div class="dep-bar"><i style="width:12%"></i></div></div></div>
-              <div class="dash-card recommendation-card"><span class="card-label">RECOMMENDED NEXT STEP</span><div class="recommend-icon">✳</div><h4 id="recommendTitle">Start with a cryptographic inventory</h4><p id="recommendText">Map where RSA and ECC are used, identify data with long confidentiality lifetimes, and define a staged PQC pilot.</p><a href="#migration" class="text-link">View migration plan <span>↗</span></a></div>
-              <div class="dash-card chart-card"><div class="dash-card-head"><div><span class="card-label">RISK OUTLOOK</span><h4>Illustrative exposure trend</h4></div><span class="chart-legend"><i></i> Exposure</span></div><div class="chart-wrap"><canvas id="riskChart" role="img" aria-label="Illustrative quantum exposure trend chart"></canvas></div></div>
-            </div>
-          </div>
-          <div class="dashboard-disclaimer">This interactive score uses illustrative rules for demonstration. It is not a security audit, forecast, or substitute for a cryptographic inventory.</div>
+          <p>Evaluates organization exposure applying Mosca's Theorem (<var>x</var> + <var>y</var> &gt; <var>z</var>) and algorithm vulnerability weighting.</p>
         </div>
-      </div>
-    </section>
 
-    <section class="section section-soft" id="messaging">
-      <div class="container">
-        <div class="section-heading split-heading"><div><div class="eyebrow">03 / SECURE COMMUNICATION</div><h2>Make the invisible<br><span class="gradient-text">security visible.</span></h2></div><p>Explore the building blocks of a quantum-safe communication workflow through a guided, front-end demonstration.</p></div>
-        <div class="messaging-layout">
-          <div class="message-panel">
-            <div class="panel-heading"><div class="person-avatar alice">A</div><div><b>Alice</b><small>Message sender</small></div><span class="connection-status"><i></i> READY</span></div>
-            <label for="messageInput">Your message</label><textarea id="messageInput" rows="4" maxlength="500">The project review is scheduled for Thursday at 10 AM.</textarea>
-            <div class="message-meta"><span>End-to-end workflow preview</span><span id="messageCount">58 / 500</span></div>
-            <button class="button button-primary full-button" id="sendMessageButton">Run secure workflow <span>→</span></button>
-            <div class="message-note">Demo only: ML-KEM steps are represented as a workflow simulation, not executed cryptography.</div>
-          </div>
-          <div class="workflow-panel">
-            <div class="workflow-top"><span class="card-label">COMMUNICATION PIPELINE</span><span class="workflow-state" id="workflowState">AWAITING INPUT</span></div>
-            <div class="workflow-line">
-              <div class="workflow-node active" data-step="0"><span>01</span><i>⌘</i><b>Key establishment</b><small>ML-KEM concept</small></div>
-              <div class="workflow-connector"></div>
-              <div class="workflow-node" data-step="1"><span>02</span><i>◈</i><b>Shared secret</b><small>Session key</small></div>
-              <div class="workflow-connector"></div>
-              <div class="workflow-node" data-step="2"><span>03</span><i>▧</i><b>Encryption</b><small>AES-GCM concept</small></div>
-              <div class="workflow-connector"></div>
-              <div class="workflow-node" data-step="3"><span>04</span><i>✓</i><b>Bob receives</b><small>Recovery</small></div>
+        <div class="risk-calc-shell">
+          <div class="risk-calc-grid">
+            <!-- Left Card: Infrastructure Parameters -->
+            <div class="risk-calc-card params-card">
+              <div class="risk-card-head">
+                <span class="card-label">INFRASTRUCTURE PARAMETERS</span>
+                <span class="live-tag">LIVE COMPUTATION</span>
+              </div>
+
+              <div class="calc-selects-grid">
+                <div class="calc-field">
+                  <label for="riskIndustrySelect">Target Industry</label>
+                  <select id="riskIndustrySelect">
+                    <option value="banking" selected>Banking &amp; Finance (1.10x)</option>
+                    <option value="healthcare">Healthcare (1.10x)</option>
+                    <option value="government">Government &amp; Defense (1.15x)</option>
+                    <option value="energy">Energy &amp; Utilities (1.05x)</option>
+                    <option value="telecom">Telecom (1.05x)</option>
+                    <option value="retail">Retail (1.00x)</option>
+                    <option value="technology">Technology (1.00x)</option>
+                    <option value="other">Other (1.00x)</option>
+                  </select>
+                </div>
+
+                <div class="calc-field">
+                  <label for="riskCryptoSelect">Current Cryptography</label>
+                  <select id="riskCryptoSelect">
+                    <option value="rsa2048" selected>RSA-2048 (35 pts)</option>
+                    <option value="rsa3072">RSA-3072 (32 pts)</option>
+                    <option value="ecc256">ECC P-256 (33 pts)</option>
+                    <option value="ecc384">ECC P-384 (30 pts)</option>
+                    <option value="dhecdh">DH/ECDH Classical (33 pts)</option>
+                    <option value="aes128">AES-128 (8 pts)</option>
+                    <option value="aes256">AES-256 (2 pts)</option>
+                    <option value="hybrid">Hybrid (Classical + PQC) (6 pts)</option>
+                    <option value="pqc">ML-KEM / ML-DSA (NIST PQC) (0 pts)</option>
+                  </select>
+                </div>
+
+                <div class="calc-field">
+                  <label for="riskSensitivitySelect">Data Sensitivity Level</label>
+                  <select id="riskSensitivitySelect">
+                    <option value="low">Low (2 pts)</option>
+                    <option value="medium">Medium (6 pts)</option>
+                    <option value="high" selected>High (11 pts)</option>
+                    <option value="critical">Critical (14 pts)</option>
+                  </select>
+                </div>
+
+                <div class="calc-field">
+                  <label for="riskExposureSelect">Network Exposure</label>
+                  <select id="riskExposureSelect">
+                    <option value="internal">Internal Only (4 pts)</option>
+                    <option value="partner">Partner / VPN (9 pts)</option>
+                    <option value="public" selected>Public Internet Gateway (15 pts)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="calc-slider-group">
+                <div class="calc-slider-row">
+                  <div class="slider-meta">
+                    <label for="sliderX">Data Retention Shelf-Life (<var>X</var>)</label>
+                    <span class="slider-val" id="valX">10 years</span>
+                  </div>
+                  <input type="range" id="sliderX" min="1" max="30" value="10" step="1" aria-valuemin="1" aria-valuemax="30" aria-valuenow="10" aria-valuetext="10 years">
+                  <div class="slider-ticks"><span>1y</span><span>15y</span><span>30y</span></div>
+                </div>
+
+                <div class="calc-slider-row">
+                  <div class="slider-meta">
+                    <label for="sliderY">Migration Execution Time (<var>Y</var>)</label>
+                    <span class="slider-val" id="valY">4 years</span>
+                  </div>
+                  <input type="range" id="sliderY" min="1" max="15" value="4" step="1" aria-valuemin="1" aria-valuemax="15" aria-valuenow="4" aria-valuetext="4 years">
+                  <div class="slider-ticks"><span>1y</span><span>8y</span><span>15y</span></div>
+                </div>
+
+                <div class="calc-slider-row">
+                  <div class="slider-meta">
+                    <label for="sliderZ">Estimated Years to Quantum Computer / CRQC (<var>Z</var>)</label>
+                    <span class="slider-val" id="valZ">8 years</span>
+                  </div>
+                  <input type="range" id="sliderZ" min="3" max="30" value="8" step="1" aria-valuemin="3" aria-valuemax="30" aria-valuenow="8" aria-valuetext="8 years">
+                  <div class="slider-ticks"><span>3y</span><span>15y</span><span>30y</span></div>
+                </div>
+              </div>
+
+              <div class="mosca-status-bar" id="moscaStatusBar">
+                <div class="mosca-eq-wrap">
+                  <span class="mosca-eq-label">Mosca Equation:</span>
+                  <strong id="moscaEquationText">10y (X) + 4y (Y) = 14y vs 8y (Z)</strong>
+                </div>
+                <span class="mosca-badge violated" id="moscaBadge">VIOLATED (HNDL RISK)</span>
+              </div>
+
+              <div class="mosca-info-note">
+                <small>ⓘ <var>Z</var> (years to a cryptographically relevant quantum computer) is an uncertain estimate. Adjust it to test scenarios. Scores are illustrative, not an audit.</small>
+              </div>
             </div>
-            <div class="workflow-result" id="workflowResult"><div class="result-lock">⌑</div><div><b>Waiting for a secure session</b><p>Run the workflow to see each stage and its status.</p></div></div>
-            <div class="message-details" id="messageDetails" hidden><div><span>SESSION STATUS</span><b class="success-text">Established</b></div><div><span>KEY EXCHANGE</span><b>ML-KEM · simulated</b></div><div><span>DATA PROTECTION</span><b>AES-GCM · concept</b></div><div><span>RECIPIENT</span><b>Bob</b></div><div class="cipher-preview"><span>MESSAGE PREVIEW</span><code id="cipherPreview">—</code></div></div>
+
+            <!-- Right Card: Assessment Result -->
+            <div class="risk-calc-card result-card" id="riskResultCard" aria-live="polite">
+              <div class="risk-card-head">
+                <span class="card-label">QUANTUM RISK ASSESSMENT RESULT</span>
+                <span class="live-tag">LIVE METRICS</span>
+              </div>
+
+              <div class="score-ring-container">
+                <div class="score-ring-svg-wrap">
+                  <svg class="score-ring-svg" viewBox="0 0 160 160" width="150" height="150" aria-hidden="true">
+                    <circle class="ring-bg" cx="80" cy="80" r="66" fill="none" stroke-width="12"></circle>
+                    <circle class="ring-progress" id="ringProgressCircle" cx="80" cy="80" r="66" fill="none" stroke-width="12" stroke-dasharray="414.69" stroke-dashoffset="20.73" stroke-linecap="round"></circle>
+                  </svg>
+                  <div class="ring-center-content">
+                    <div class="ring-score-row"><strong class="ring-score-num" id="dynamicRiskScore">95</strong><small class="ring-score-denom">/ 100</small></div>
+                    <span class="ring-score-label">RISK INDEX</span>
+                  </div>
+                </div>
+                <div class="risk-status-pill-wrap">
+                  <span class="risk-tier-pill critical" id="riskTierPill">CRITICAL THREAT · IMMEDIATE PRIORITY</span>
+                </div>
+              </div>
+
+              <p class="risk-explanation" id="riskExplanation">
+                Critical Mosca violation: Retention (10y) + Migration (4y) = 14y, exceeding the estimated quantum threshold (8y) by 6y. Traffic intercepted today is vulnerable to Harvest Now, Decrypt Later (HNDL).
+              </p>
+
+              <div class="risk-rec-box">
+                <span class="card-label">RECOMMENDED STANDARD ALGORITHMS</span>
+                <ul class="rec-list" id="riskRecommendations">
+                  <!-- Injected dynamically -->
+                </ul>
+              </div>
+
+              <div class="formula-line" id="riskFormulaLine">
+                Formula: (35 algo + 25 mosca + 11 sens + 15 expo) × 1.10 = 95
+              </div>
+
+              <div class="calc-footnote">
+                Model-based assessment, not a prediction.
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section" id="algorithms">
-      <div class="container">
-        <div class="section-heading"><div class="eyebrow">04 / POST-QUANTUM TOOLKIT</div><h2>Meet the standards shaping<br><span class="gradient-text">quantum-safe security.</span></h2><p class="section-intro">Explore the roles of the NIST-standardized post-quantum algorithms at the heart of a migration strategy.</p></div>
+      <section class="section" id="algorithms">
+        <div class="container">
+          <div class="section-heading"><div class="eyebrow">04 / POST-QUANTUM TOOLKIT</div><h2>Meet the standards shaping<br><span class="gradient-text">quantum-safe security.</span></h2><p class="section-intro">Explore the roles of the NIST-standardized post-quantum algorithms at the heart of a migration strategy.</p></div>
         <div class="algorithm-grid">
           <article class="algorithm-card alg-kem"><div class="alg-top"><span class="alg-symbol">⌘</span><span class="standard-pill">FIPS 203</span></div><div class="alg-label">KEY ESTABLISHMENT</div><h3>ML-KEM</h3><p>Module-Lattice-Based Key-Encapsulation Mechanism establishes a shared secret over a public channel.</p><div class="alg-flow"><span>KeyGen</span><i>→</i><span>Encaps</span><i>→</i><span>Decaps</span></div><a href="#kem-demo" class="text-link">Explore ML-KEM <span>↗</span></a></article>
           <article class="algorithm-card alg-dsa"><div class="alg-top"><span class="alg-symbol">◇</span><span class="standard-pill">FIPS 204</span></div><div class="alg-label">DIGITAL SIGNATURES</div><h3>ML-DSA</h3><p>Module-Lattice-Based Digital Signature Algorithm supports authentication and integrity verification.</p><div class="alg-flow"><span>KeyGen</span><i>→</i><span>Sign</span><i>→</i><span>Verify</span></div><a href="#dsa-demo" class="text-link">Explore ML-DSA <span>↗</span></a></article>
@@ -226,10 +456,64 @@
 
     <section class="section" id="file-vault">
       <div class="container">
-        <div class="section-heading split-heading"><div><div class="eyebrow">08 / FILE PROTECTION PREVIEW</div><h2>Protect files.<br><span class="gradient-text">Plan the transition.</span></h2></div><p>Try a local browser encryption demonstration. It uses Web Crypto AES-GCM for the file bytes; the ML-KEM option is a conceptual key-establishment label, not an implemented PQC operation.</p></div>
-        <div class="vault-card">
-          <div class="vault-upload" id="dropZone"><input type="file" id="fileInput" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg" hidden><div class="upload-icon">↑</div><h3>Drop a file to begin</h3><p>or <button class="inline-button" id="browseFiles">browse files</button></p><small>PDF, DOCX, TXT, PNG, JPG · Local browser demo</small><div class="selected-file" id="selectedFile" hidden></div></div>
-          <div class="vault-options"><span class="card-label">PROTECTION MODE</span><label class="option-row"><input type="radio" name="vaultMode" value="aes" checked><span><b>Local AES-GCM demo</b><small>Encrypt file bytes in this browser</small></span><em>WEB CRYPTO</em></label><label class="option-row"><input type="radio" name="vaultMode" value="hybrid"><span><b>Hybrid concept</b><small>AES data encryption + ML-KEM key establishment concept</small></span><em>CONCEPT</em></label><button class="button button-primary full-button" id="protectFileButton" disabled>Encrypt selected file <span>→</span></button><div class="vault-result" id="vaultResult" aria-live="polite">Your file stays in this browser session. No upload is performed.</div></div>
+        <div class="section-heading split-heading">
+          <div><div class="eyebrow">08 / ZERO-KNOWLEDGE FILE VAULT</div><h2>Protect & Restore.<br><span class="gradient-text">Authenticated Security.</span></h2></div>
+          <p>Encrypt files locally using modern Web Crypto PBKDF2 (SHA-256) + AES-256-GCM. Decrypt and verify your encrypted packages securely with full data recovery.</p>
+        </div>
+        <div class="vault-tabs" role="tablist">
+          <button class="vault-tab active" id="tabEncrypt" role="tab" aria-selected="true" type="button">🔒 Encrypt File</button>
+          <button class="vault-tab" id="tabDecrypt" role="tab" aria-selected="false" type="button">🔓 Decrypt & Restore File</button>
+        </div>
+        <div class="vault-card" id="encryptView">
+          <div class="vault-upload" id="dropZone">
+            <input type="file" id="fileInput" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.json,.csv,.zip" hidden>
+            <div class="upload-icon">↑</div>
+            <h3>Drop a file to encrypt</h3>
+            <p>or <button class="inline-button" id="browseFiles" type="button">browse files</button></p>
+            <small>Any file type · Local Web Crypto AES-256-GCM</small>
+            <div class="selected-file" id="selectedFile" hidden></div>
+          </div>
+          <div class="vault-options">
+            <span class="card-label">SECURITY CONFIGURATION</span>
+            <label for="vaultPassphrase">Secret Passphrase <small class="label-hint">(PBKDF2 SHA-256, 100k iterations)</small></label>
+            <div class="passphrase-row">
+              <input type="password" id="vaultPassphrase" placeholder="Enter a secure encryption passphrase..." autocomplete="new-password">
+              <button class="button button-quiet button-sm" id="genPassphraseBtn" type="button" title="Generate strong random passphrase">Generate</button>
+            </div>
+            <label class="option-row">
+              <input type="radio" name="vaultMode" value="aes" checked>
+              <span><b>Authenticated AES-256-GCM</b><small>100,000 PBKDF2 iterations, 16-byte random salt, 12-byte random IV</small></span>
+              <em>WEB CRYPTO</em>
+            </label>
+            <label class="option-row">
+              <input type="radio" name="vaultMode" value="hybrid">
+              <span><b>Hybrid ML-KEM + AES Concept</b><small>Simulates post-quantum encapsulation header with AES-GCM payload</small></span>
+              <em>HYBRID READY</em>
+            </label>
+            <button class="button button-primary full-button" id="protectFileButton" disabled>Encrypt & Download File <span>→</span></button>
+            <div class="vault-result" id="vaultResult" aria-live="polite">Choose a file and enter a passphrase to encrypt.</div>
+          </div>
+        </div>
+
+        <div class="vault-card" id="decryptView" hidden>
+          <div class="vault-upload" id="decryptDropZone">
+            <input type="file" id="decryptFileInput" accept=".enc,.qsentinal" hidden>
+            <div class="upload-icon">↓</div>
+            <h3>Drop your .qsentinal.enc file</h3>
+            <p>or <button class="inline-button" id="browseDecryptFiles" type="button">browse encrypted file</button></p>
+            <small>Requires matching passphrase for authenticated decryption</small>
+            <div class="selected-file" id="decryptSelectedFile" hidden></div>
+          </div>
+          <div class="vault-options">
+            <span class="card-label">AUTHENTICATED DECRYPTION</span>
+            <label for="decryptPassphrase">Decryption Passphrase</label>
+            <div class="passphrase-row">
+              <input type="password" id="decryptPassphrase" placeholder="Enter original encryption passphrase...">
+            </div>
+            <p class="vault-info">The Web Crypto engine will authenticate the 128-bit GCM tag and salt before reconstructing your original file.</p>
+            <button class="button button-primary full-button" id="decryptFileButton" disabled>Decrypt & Restore Original <span>→</span></button>
+            <div class="vault-result" id="decryptResult" aria-live="polite">Select your .qsentinal.enc file and supply the passphrase.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -263,22 +547,10 @@
       </div>
     </section>
 
-    <section class="section architecture-section" id="architecture">
-      <div class="container">
-        <div class="section-heading centered-heading"><div class="eyebrow">12 / PLATFORM ARCHITECTURE</div><h2>One platform.<br><span class="gradient-text">Connected intelligence.</span></h2><p class="section-intro">A modular architecture connects user experiences, cryptographic operations and decision-support analytics.</p></div>
-        <div class="architecture-flow">
-          <div class="architecture-node"><span>01</span><i>▣</i><b>Frontend</b><small>Interactive web experience</small></div><div class="architecture-arrow">↓</div>
-          <div class="architecture-node"><span>02</span><i>⌘</i><b>Flask API</b><small>Application and orchestration layer</small></div><div class="architecture-arrow">↓</div>
-          <div class="architecture-node crypto-node"><span>03</span><i>◇</i><b>Cryptography engine</b><small>RSA · ECC · ML-KEM · ML-DSA</small></div><div class="architecture-arrow">↓</div>
-          <div class="architecture-bottom"><div class="architecture-node"><span>04</span><i>▥</i><b>Analytics engine</b><small>Risk scoring and benchmarking</small></div><div class="architecture-node"><span>05</span><i>◫</i><b>Visualization layer</b><small>Dashboards and reports</small></div></div>
-        </div>
-      </div>
-    </section>
-
     <section class="closing-cta"><div class="container cta-inner"><div class="cta-orb">Q</div><div><div class="eyebrow">THE QUANTUM TRANSITION STARTS NOW</div><h2>Prepare for what's next.</h2><p>Understand your exposure. Build your roadmap. Move forward with confidence.</p></div><a href="#dashboard" class="button button-white">Explore QSentinal <span>↗</span></a></div></section>
   </main>
 
-  <footer class="site-footer"><div class="container footer-main"><div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span>QSentinal</span><sup>®</sup></a><p>Preparing security for the quantum era.</p><div class="footer-social"><a href="#home" aria-label="LinkedIn">in</a><a href="#home" aria-label="GitHub">⌘</a><a href="#home" aria-label="X">𝕏</a></div></div><div class="footer-column"><b>PRODUCT</b><a href="#threats">Threat intelligence</a><a href="#messaging">Secure messaging</a><a href="#benchmark">Benchmarking</a><a href="#migration">Migration center</a></div><div class="footer-column"><b>PLATFORM</b><a href="#algorithms">PQC algorithms</a><a href="#file-vault">File protection</a><a href="#advisor">AI advisor</a><a href="#architecture">Architecture</a></div><div class="footer-column"><b>LEARN</b><a href="#learning">Learning hub</a><a href="#kem-demo">ML-KEM lab</a><a href="#dsa-demo">ML-DSA lab</a><a href="#top">Documentation</a></div><div class="footer-column"><b>RESOURCES</b><a href="#top">About QSentinal</a><a href="#top">Contact</a><a href="#top">Privacy</a><a href="#top">Terms</a></div></div><div class="container footer-bottom"><span>© 2026 QSentinal. All rights reserved.</span><span>Preparing Security for the Quantum Era. <a href="#top">Back to top ↑</a></span></div></footer>
+  <footer class="site-footer"><div class="container footer-main"><div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span>QSentinal</span><sup>®</sup></a><p>Preparing security for the quantum era.</p><div class="footer-social"><a href="#home" aria-label="LinkedIn">in</a><a href="#home" aria-label="GitHub">⌘</a><a href="#home" aria-label="X">𝕏</a></div></div><div class="footer-column"><b>PRODUCT</b><a href="#threats">Threat intelligence</a><a href="#messaging">Secure messaging</a><a href="#benchmark">Benchmarking</a><a href="#migration">Migration center</a></div><div class="footer-column"><b>PLATFORM</b><a href="#algorithms">PQC algorithms</a><a href="#file-vault">File protection</a><a href="#advisor">AI advisor</a></div><div class="footer-column"><b>LEARN</b><a href="#learning">Learning hub</a><a href="#kem-demo">ML-KEM lab</a><a href="#dsa-demo">ML-DSA lab</a><a href="#top">Documentation</a></div><div class="footer-column"><b>RESOURCES</b><a href="#top">About QSentinal</a><a href="#top">Contact</a><a href="#top">Privacy</a><a href="#top">Terms</a></div></div><div class="container footer-bottom"><span>© 2026 QSentinal. All rights reserved.</span><span>Preparing Security for the Quantum Era. <a href="#top">Back to top ↑</a></span></div></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

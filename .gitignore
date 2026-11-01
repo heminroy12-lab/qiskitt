@@ -1,0 +1,52 @@
+# =============================================================================
+# QSentinal .gitignore
+# =============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Secrets and config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+secrets.json
+instance/
+
+# Editor and OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temp
+*.log
+*.tmp
+tmp/
+
+# Project-specific artifacts (Encrypted files, exported test keys & signatures)
+*.qsentinal.enc
+*.pub.json
+*.sig
+*.ct
+uploads/
+test_uploads/
