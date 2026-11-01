@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8ff">
+  <meta name="description" content="QSentinal — quantum readiness, post-quantum cryptography education and migration planning.">
+  <title>QSentinal — Secure Today Quantum Safe Tomorrow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+<!-- removed 1 -->
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="QSentinal home">
+        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+        <span>QSentinal</span><sup>®</sup>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation"><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#threats">Threat Intelligence</a>
+        <a href="#messaging">Secure Messaging</a>
+        <a href="#algorithms">PQC Algorithms</a>
+        <a href="#benchmark">Benchmarking</a>
+        <a href="#migration">Migration Center</a>
+        <a href="#advisor">AI Advisor</a>
+        <a href="#learning">Learning Hub</a>
+      </div>
+      
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section-pad" id="home">
+      <div class="hero-grid container">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-icon">✳</span> THE POST-QUANTUM READINESS PLATFORM</div>
+          <h1>Secure today.<br><span class="gradient-text">Quantum safe</span><br>tomorrow.</h1>
+          <p class="hero-lede">QSentinal helps teams understand quantum threats, evaluate cryptographic risk, and prepare for a postquantum future with clear, actionable intelligence.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#dashboard">Explore platform <span>↗</span></a>
+            <button class="button button-quiet" id="runHeroDemo"><span class="play-icon">▶</span> Run live demo</button>
+          </div>
+          <div class="hero-proof">
+            <div class="avatar-stack" aria-hidden="true"><span>Q</span><span>R</span><span>+</span></div>
+            <div><strong>Built for the transition</strong><small>Security teams · Developers · Researchers</small></div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Illustration of a protected quantum network">
+          <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="visual-orbit orbit-three"></div>
+          <div class="visual-grid"></div>
+          <div class="visual-core"><div class="core-ring"></div><div class="core-symbol">Q<span>✳</span></div><small>QUANTUM<br>RESILIENCE</small></div>
+          <div class="float-node node-a"><span class="node-icon">⌘</span><span><b>ML-KEM</b><small>Key establishment</small></span><i class="status-dot"></i></div>
+          <div class="float-node node-b"><span class="node-icon violet">◇</span><span><b>ML-DSA</b><small>Digital signatures</small></span><i class="status-dot"></i></div>
+          <div class="float-node node-c"><span class="node-icon blue">⌁</span><span><b>AES-256</b><small>Data protection</small></span><i class="status-dot"></i></div>
+          <div class="visual-label label-top">SECURE BY DESIGN <span>●</span></div>
+          <div class="visual-label label-bottom">POST-QUANTUM LAYER <span>01 / 04</span></div>
+        </div>
+      </div>
+      <div class="container metric-strip">
+        <div class="metric-item"><span class="metric-icon">◈</span><div><strong>256-bit</strong><small>Symmetric security option</small></div></div>
+        <div class="metric-item"><span class="metric-icon">⌁</span><div><strong>Quantum-aware</strong><small>Threat monitoring framework</small></div></div>
+        <div class="metric-item"><span class="metric-icon">▦</span><div><strong>ML-KEM ready</strong><small>Key establishment pathway</small></div></div>
+        <div class="metric-item"><span class="metric-icon">✳</span><div><strong>ML-DSA ready</strong><small>Signature migration pathway</small></div></div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="threats">
+      <div class="container">
+        <div class="section-heading split-heading">
+          <div><div class="eyebrow">01 / THE QUANTUM CHALLENGE</div><h2>Tomorrow's threat.<br><span class="gradient-text">Today's decision.</span></h2></div>
+          <p>Quantum computing changes the long-term security assumptions behind widely deployed public-key cryptography. Preparation starts with knowing where you rely on it.</p>
+        </div>
+        <div class="threat-intro-grid">
+          <article class="info-card threat-copy-card">
+            <div class="card-kicker"><span class="kicker-icon">!</span> HARVEST NOW, DECRYPT LATER</div>
+            <h3>Data collected today can become tomorrow's exposure.</h3>
+            <p>An attacker may store encrypted information now and attempt to decrypt it later if sufficiently capable quantum computers become available. Long-lived sensitive data deserves priority attention.</p>
+            <a href="#migration" class="text-link">Plan your migration <span>↗</span></a>
+          </article>
+          <div class="threat-stats">
+            <div class="mini-stat"><span class="mini-stat-icon">⌁</span><strong>RSA / ECC</strong><small>Public-key systems requiring a transition plan</small></div>
+            <div class="mini-stat"><span class="mini-stat-icon purple">◷</span><strong>Long data life</strong><small>Records that must remain confidential for years</small></div>
+            <div class="mini-stat"><span class="mini-stat-icon cyan">↗</span><strong>Crypto agility</strong><small>Ability to replace algorithms safely</small></div>
+          </div>
+        </div>
+        <div class="timeline-panel">
+          <div class="timeline-header"><div><div class="eyebrow">THREAT PATHWAYS</div><h3>Two possible futures</h3></div><span class="live-pill"><i></i> INTERACTIVE EXPLAINER</span></div>
+          <div class="pathway-grid">
+            <div class="pathway danger-path">
+              <div class="pathway-title"><span class="pathway-symbol">!</span><div><b>Legacy exposure path</b><small>Without a transition plan</small></div></div>
+              <div class="path-steps">
+                <div class="path-step"><span>01</span><b>Today</b><small>Data encrypted with RSA / ECC</small></div>
+                <div class="path-step"><span>02</span><b>Collection</b><small>Encrypted data is captured and stored</small></div>
+                <div class="path-step"><span>03</span><b>Future capability</b><small>Fault-tolerant quantum systems emerge</small></div>
+                <div class="path-step"><span>04</span><b>Potential exposure</b><small>Vulnerable public-key protection may fail</small></div>
+              </div>
+            </div>
+            <div class="pathway safe-path">
+              <div class="pathway-title"><span class="pathway-symbol">✓</span><div><b>Quantum-ready path</b><small>With a planned transition</small></div></div>
+              <div class="path-steps">
+                <div class="path-step"><span>01</span><b>Inventory</b><small>Identify cryptographic dependencies</small></div>
+                <div class="path-step"><span>02</span><b>Transition</b><small>Adopt standards-based PQC</small></div>
+                <div class="path-step"><span>03</span><b>Validate</b><small>Test interoperability and operations</small></div>
+                <div class="path-step"><span>04</span><b>Resilience</b><small>Maintain crypto agility over time</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dashboard">
+      <div class="container">
+        <div class="section-heading split-heading">
+          <div><div class="eyebrow">02 / QUANTUM THREAT INTELLIGENCE</div><h2>See your exposure.<br><span class="gradient-text">Prioritize what matters.</span></h2></div>
+          <p>A guided readiness snapshot based on your environment. Adjust the inputs to see how cryptographic dependencies influence the illustrative risk profile.</p>
+        </div>
+        <div class="dashboard-shell">
+          <div class="dashboard-top"><div class="dashboard-title"><span class="window-dots"><i></i><i></i><i></i></span><b>Organization risk overview</b><span class="demo-tag">DEMO DATA</span></div><span class="updated-label">● Sample assessment · Local preview</span></div>
+          <div class="dashboard-controls">
+            <label>Industry<select id="industrySelect"><option value="banking">Banking & finance</option><option value="healthcare">Healthcare</option><option value="government">Government</option><option value="cloud">Cloud infrastructure</option><option value="enterprise">Enterprise</option><option value="iot">IoT</option></select></label>
+            <label>Current algorithm<select id="algorithmSelect"><option value="rsa">RSA</option><option value="ecc">ECC / ECDSA</option><option value="hybrid">Hybrid / mixed</option><option value="pqc">PQC deployed</option></select></label>
+            <label>Infrastructure<select id="infraSelect"><option value="hybrid">Hybrid cloud</option><option value="onprem">On-premises</option><option value="cloud">Public cloud</option><option value="iot">Connected devices</option></select></label>
+            <button class="button button-primary assess-button" id="assessButton">Assess exposure <span>→</span></button>
+          </div>
+          <div class="dashboard-body">
+            <div class="risk-score-card">
+              <div class="card-label">QUANTUM EXPOSURE SCORE <span class="info-dot" title="Illustrative score, not a certified audit">i</span></div>
+              <div class="score-ring" id="scoreRing"><div><strong id="riskScore">72</strong><small>/ 100</small></div></div>
+              <span class="risk-status high" id="riskStatus">Elevated exposure</span>
+              <p id="riskSummary">Legacy public-key dependencies and long-lived sensitive data may increase future exposure.</p>
+              <div class="score-foot"><span>Readiness index</span><b id="readinessLabel">28 / 100</b></div>
+            </div>
+            <div class="dashboard-main">
+              <div class="dash-card vulnerability-card"><div class="dash-card-head"><div><span class="card-label">EXPOSURE BREAKDOWN</span><h4>Cryptographic dependencies</h4></div><span class="tiny-badge">Illustrative</span></div><div class="dependency-row"><div class="dep-label"><span class="dep-dot red"></span>RSA key exchange / signatures</div><b id="rsaExposure">High</b><div class="dep-bar"><i style="width:86%"></i></div></div><div class="dependency-row"><div class="dep-label"><span class="dep-dot orange"></span>ECC / ECDSA</div><b id="eccExposure">High</b><div class="dep-bar"><i style="width:74%"></i></div></div><div class="dependency-row"><div class="dep-label"><span class="dep-dot green"></span>PQC adoption</div><b id="pqcExposure">Not detected</b><div class="dep-bar"><i style="width:12%"></i></div></div></div>
+              <div class="dash-card recommendation-card"><span class="card-label">RECOMMENDED NEXT STEP</span><div class="recommend-icon">✳</div><h4 id="recommendTitle">Start with a cryptographic inventory</h4><p id="recommendText">Map where RSA and ECC are used, identify data with long confidentiality lifetimes, and define a staged PQC pilot.</p><a href="#migration" class="text-link">View migration plan <span>↗</span></a></div>
+              <div class="dash-card chart-card"><div class="dash-card-head"><div><span class="card-label">RISK OUTLOOK</span><h4>Illustrative exposure trend</h4></div><span class="chart-legend"><i></i> Exposure</span></div><div class="chart-wrap"><canvas id="riskChart" role="img" aria-label="Illustrative quantum exposure trend chart"></canvas></div></div>
+            </div>
+          </div>
+          <div class="dashboard-disclaimer">This interactive score uses illustrative rules for demonstration. It is not a security audit, forecast, or substitute for a cryptographic inventory.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="messaging">
+      <div class="container">
+        <div class="section-heading split-heading"><div><div class="eyebrow">03 / SECURE COMMUNICATION</div><h2>Make the invisible<br><span class="gradient-text">security visible.</span></h2></div><p>Explore the building blocks of a quantum-safe communication workflow through a guided, front-end demonstration.</p></div>
+        <div class="messaging-layout">
+          <div class="message-panel">
+            <div class="panel-heading"><div class="person-avatar alice">A</div><div><b>Alice</b><small>Message sender</small></div><span class="connection-status"><i></i> READY</span></div>
+            <label for="messageInput">Your message</label><textarea id="messageInput" rows="4" maxlength="500">The project review is scheduled for Thursday at 10 AM.</textarea>
+            <div class="message-meta"><span>End-to-end workflow preview</span><span id="messageCount">58 / 500</span></div>
+            <button class="button button-primary full-button" id="sendMessageButton">Run secure workflow <span>→</span></button>
+            <div class="message-note">Demo only: ML-KEM steps are represented as a workflow simulation, not executed cryptography.</div>
+          </div>
+          <div class="workflow-panel">
+            <div class="workflow-top"><span class="card-label">COMMUNICATION PIPELINE</span><span class="workflow-state" id="workflowState">AWAITING INPUT</span></div>
+            <div class="workflow-line">
+              <div class="workflow-node active" data-step="0"><span>01</span><i>⌘</i><b>Key establishment</b><small>ML-KEM concept</small></div>
+              <div class="workflow-connector"></div>
+              <div class="workflow-node" data-step="1"><span>02</span><i>◈</i><b>Shared secret</b><small>Session key</small></div>
+              <div class="workflow-connector"></div>
+              <div class="workflow-node" data-step="2"><span>03</span><i>▧</i><b>Encryption</b><small>AES-GCM concept</small></div>
+              <div class="workflow-connector"></div>
+              <div class="workflow-node" data-step="3"><span>04</span><i>✓</i><b>Bob receives</b><small>Recovery</small></div>
+            </div>
+            <div class="workflow-result" id="workflowResult"><div class="result-lock">⌑</div><div><b>Waiting for a secure session</b><p>Run the workflow to see each stage and its status.</p></div></div>
+            <div class="message-details" id="messageDetails" hidden><div><span>SESSION STATUS</span><b class="success-text">Established</b></div><div><span>KEY EXCHANGE</span><b>ML-KEM · simulated</b></div><div><span>DATA PROTECTION</span><b>AES-GCM · concept</b></div><div><span>RECIPIENT</span><b>Bob</b></div><div class="cipher-preview"><span>MESSAGE PREVIEW</span><code id="cipherPreview">—</code></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="algorithms">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">04 / POST-QUANTUM TOOLKIT</div><h2>Meet the standards shaping<br><span class="gradient-text">quantum-safe security.</span></h2><p class="section-intro">Explore the roles of the NIST-standardized post-quantum algorithms at the heart of a migration strategy.</p></div>
+        <div class="algorithm-grid">
+          <article class="algorithm-card alg-kem"><div class="alg-top"><span class="alg-symbol">⌘</span><span class="standard-pill">FIPS 203</span></div><div class="alg-label">KEY ESTABLISHMENT</div><h3>ML-KEM</h3><p>Module-Lattice-Based Key-Encapsulation Mechanism establishes a shared secret over a public channel.</p><div class="alg-flow"><span>KeyGen</span><i>→</i><span>Encaps</span><i>→</i><span>Decaps</span></div><a href="#kem-demo" class="text-link">Explore ML-KEM <span>↗</span></a></article>
+          <article class="algorithm-card alg-dsa"><div class="alg-top"><span class="alg-symbol">◇</span><span class="standard-pill">FIPS 204</span></div><div class="alg-label">DIGITAL SIGNATURES</div><h3>ML-DSA</h3><p>Module-Lattice-Based Digital Signature Algorithm supports authentication and integrity verification.</p><div class="alg-flow"><span>KeyGen</span><i>→</i><span>Sign</span><i>→</i><span>Verify</span></div><a href="#dsa-demo" class="text-link">Explore ML-DSA <span>↗</span></a></article>
+          <article class="algorithm-card alg-aes"><div class="alg-top"><span class="alg-symbol">▦</span><span class="standard-pill">SYMMETRIC</span></div><div class="alg-label">DATA ENCRYPTION</div><h3>AES-256</h3><p>A widely used symmetric encryption standard for protecting application data and session traffic.</p><div class="alg-flow"><span>Key</span><i>→</i><span>Encrypt</span><i>→</i><span>Decrypt</span></div><a href="#messaging" class="text-link">See messaging demo <span>↗</span></a></article>
+        </div>
+        <div class="algorithm-note"><span>ⓘ</span><p>ML-KEM is a key-encapsulation mechanism, not a direct replacement for RSA encryption. ML-DSA is a signature scheme and is a relevant migration target for schemes such as RSA signatures and ECDSA.</p></div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="kem-demo">
+      <div class="container">
+        <div class="section-heading split-heading"><div><div class="eyebrow">05 / INTERACTIVE LAB</div><h2>Understand the <span class="gradient-text">ML-KEM flow.</span></h2></div><p>A simplified walkthrough of key generation, encapsulation and decapsulation. Use it to understand the roles of each operation.</p></div>
+        <div class="lab-card">
+          <div class="lab-steps"><div class="lab-step active" data-kem="0"><span>01</span><b>Key generation</b><small>Recipient creates key pair</small></div><div class="lab-step" data-kem="1"><span>02</span><b>Encapsulation</b><small>Sender creates shared secret</small></div><div class="lab-step" data-kem="2"><span>03</span><b>Decapsulation</b><small>Recipient recovers secret</small></div></div>
+          <div class="lab-content"><div class="lab-visual"><div class="lab-orbit"></div><div class="lab-lock">⌑</div><div class="lab-packet packet-one">PUBLIC KEY</div><div class="lab-packet packet-two">CIPHERTEXT</div></div><div class="lab-explain"><span class="card-label" id="kemStepLabel">STEP 01 / KEY GENERATION</span><h3 id="kemStepTitle">Create a key pair</h3><p id="kemStepText">The recipient generates a public key and a private key. The public key can be shared; the private key remains protected by the recipient.</p><div class="lab-output" id="kemOutput"><span>OUTPUT</span><b>Public key + private key pair</b></div><button class="button button-primary" id="nextKemStep">Next step <span>→</span></button><button class="text-button" id="resetKem">Reset walkthrough</button></div></div>
+          <p class="demo-disclaimer">Educational simulation only. No ML-KEM key material is generated in this browser demo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dsa-demo">
+      <div class="container dsa-layout">
+        <div><div class="eyebrow">06 / AUTHENTICITY & INTEGRITY</div><h2>Trust what you<br><span class="gradient-text">can verify.</span></h2><p class="section-intro">Digital signatures help recipients verify who created a message and whether it changed in transit. ML-DSA is designed to provide this capability in a post-quantum setting.</p><div class="check-list"><div><span>✓</span><p><b>Authenticity</b><small>Verify the signature against a public key.</small></p></div><div><span>✓</span><p><b>Integrity</b><small>Detect changes to signed content.</small></p></div><div><span>✓</span><p><b>Post-quantum design</b><small>Use a standardized PQC signature scheme.</small></p></div></div></div>
+        <div class="signature-card"><div class="signature-head"><span class="card-label">SIGNATURE VERIFICATION LAB</span><span class="demo-tag">SIMULATED</span></div><label for="documentInput">Document text</label><textarea id="documentInput" rows="3">QSentinal migration policy — version 1.0</textarea><button class="button button-primary full-button" id="signButton">Simulate sign & verify <span>→</span></button><div class="signature-output" id="signatureOutput"><div class="signature-seal">◇</div><div><b>Awaiting document</b><small>Run the demo to see a verification result.</small></div></div><div class="signature-meta"><div><span>ALGORITHM</span><b>ML-DSA · conceptual</b></div><div><span>VERIFICATION</span><b id="signatureStatus">Not run</b></div></div></div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="benchmark">
+      <div class="container">
+        <div class="section-heading split-heading"><div><div class="eyebrow">07 / PERFORMANCE CENTER</div><h2>Compare with<br><span class="gradient-text">the right context.</span></h2></div><p>Cryptographic performance depends on implementation, hardware, parameters and workload. Explore representative size characteristics and an illustrative benchmark dataset.</p></div>
+        <div class="benchmark-shell">
+          <div class="benchmark-top"><div><span class="card-label">ALGORITHM COMPARISON</span><h3>Classical vs post-quantum</h3></div><div class="benchmark-tabs" role="group" aria-label="Benchmark chart metric"><button class="metric-tab active" data-metric="key">Public key size</button><button class="metric-tab" data-metric="signature">Signature size</button><button class="metric-tab" data-metric="speed">Demo latency</button></div></div>
+          <div class="benchmark-chart-wrap"><canvas id="benchmarkChart" role="img" aria-label="Algorithm comparison chart"></canvas></div>
+          <div class="benchmark-foot"><span><i class="legend-dot classical"></i> Classical examples</span><span><i class="legend-dot pqc"></i> Post-quantum examples</span><small>Indicative values only; not measured on your device.</small></div>
+        </div>
+        <div class="comparison-grid">
+          <div class="comparison-card"><span class="compare-label">CLASSICAL PUBLIC-KEY</span><h3>RSA-2048</h3><div class="compare-value">256 <small>bytes · modulus-sized public key representation</small></div><p>Widely deployed, but vulnerable to sufficiently capable fault-tolerant quantum attacks based on Shor's algorithm.</p></div>
+          <div class="comparison-card"><span class="compare-label">POST-QUANTUM KEM</span><h3>ML-KEM-768</h3><div class="compare-value">1,184 <small>bytes · encapsulation public key</small></div><p>NIST-standardized key encapsulation designed to resist known attacks from both classical and quantum computers.</p></div>
+          <div class="comparison-card"><span class="compare-label">POST-QUANTUM SIGNATURE</span><h3>ML-DSA-65</h3><div class="compare-value">1,952 <small>bytes · public key</small></div><p>NIST-standardized digital signature scheme for authentication and integrity in a post-quantum environment.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="file-vault">
+      <div class="container">
+        <div class="section-heading split-heading"><div><div class="eyebrow">08 / FILE PROTECTION PREVIEW</div><h2>Protect files.<br><span class="gradient-text">Plan the transition.</span></h2></div><p>Try a local browser encryption demonstration. It uses Web Crypto AES-GCM for the file bytes; the ML-KEM option is a conceptual key-establishment label, not an implemented PQC operation.</p></div>
+        <div class="vault-card">
+          <div class="vault-upload" id="dropZone"><input type="file" id="fileInput" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg" hidden><div class="upload-icon">↑</div><h3>Drop a file to begin</h3><p>or <button class="inline-button" id="browseFiles">browse files</button></p><small>PDF, DOCX, TXT, PNG, JPG · Local browser demo</small><div class="selected-file" id="selectedFile" hidden></div></div>
+          <div class="vault-options"><span class="card-label">PROTECTION MODE</span><label class="option-row"><input type="radio" name="vaultMode" value="aes" checked><span><b>Local AES-GCM demo</b><small>Encrypt file bytes in this browser</small></span><em>WEB CRYPTO</em></label><label class="option-row"><input type="radio" name="vaultMode" value="hybrid"><span><b>Hybrid concept</b><small>AES data encryption + ML-KEM key establishment concept</small></span><em>CONCEPT</em></label><button class="button button-primary full-button" id="protectFileButton" disabled>Encrypt selected file <span>→</span></button><div class="vault-result" id="vaultResult" aria-live="polite">Your file stays in this browser session. No upload is performed.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="migration">
+      <div class="container">
+        <div class="section-heading split-heading"><div><div class="eyebrow">09 / MIGRATION CENTER</div><h2>Make the shift<br><span class="gradient-text">with a clear plan.</span></h2></div><p>Every organization has different systems, data lifetimes and operational constraints. Start with a sector-specific roadmap and adapt it through discovery and testing.</p></div>
+        <div class="migration-layout">
+          <div class="migration-config"><span class="card-label">BUILD YOUR ROADMAP</span><h3>Choose your environment</h3><label for="sectorSelect">Organization sector</label><select id="sectorSelect"><option value="Banking">Banking & finance</option><option value="Healthcare">Healthcare</option><option value="Government">Government</option><option value="Cloud">Cloud infrastructure</option><option value="Enterprise">Enterprise</option><option value="IoT">IoT</option></select><label for="prioritySelect">Primary priority</label><select id="prioritySelect"><option value="Confidentiality longevity">Long-term data confidentiality</option><option value="Authentication">Authentication and signatures</option><option value="Device lifecycle">Long-lived device lifecycle</option><option value="Compliance">Regulatory readiness</option></select><button class="button button-primary full-button" id="generateRoadmap">Generate roadmap <span>→</span></button><p class="form-hint">A planning template, not an automated infrastructure scan.</p></div>
+          <div class="roadmap-panel"><div class="roadmap-head"><div><span class="card-label">YOUR TRANSITION BLUEPRINT</span><h3 id="roadmapTitle">A practical path to quantum readiness</h3></div><span class="roadmap-count">5 PHASES</span></div><div class="roadmap-list" id="roadmapList"><div class="roadmap-item"><span class="roadmap-number">01</span><div><b>Cryptographic inventory</b><p>Discover algorithms, certificates, keys, protocols and system owners.</p><small>FOUNDATION</small></div><span class="roadmap-state">START HERE</span></div><div class="roadmap-item"><span class="roadmap-number">02</span><div><b>Risk and data-lifetime assessment</b><p>Prioritize sensitive data, dependencies and systems with long confidentiality needs.</p><small>PRIORITIZATION</small></div><span class="roadmap-state">NEXT</span></div><div class="roadmap-item"><span class="roadmap-number">03</span><div><b>Hybrid pilot deployment</b><p>Test interoperability, performance, key management and fallback behavior.</p><small>VALIDATION</small></div><span class="roadmap-state">PLAN</span></div><div class="roadmap-item"><span class="roadmap-number">04</span><div><b>Phased PQC adoption</b><p>Transition appropriate key-establishment and signature use cases to standards-based PQC.</p><small>ROLLOUT</small></div><span class="roadmap-state">PLAN</span></div><div class="roadmap-item"><span class="roadmap-number">05</span><div><b>Continuous crypto agility</b><p>Monitor standards, inventory drift, dependencies and future algorithm updates.</p><small>OPTIMIZATION</small></div><span class="roadmap-state">ONGOING</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="advisor">
+      <div class="container advisor-layout">
+        <div><div class="eyebrow">10 / AI SECURITY ADVISOR</div><h2>Clarity for your<br><span class="gradient-text">next security move.</span></h2><p class="section-intro">Explore guided answers to common post-quantum security questions. This front-end advisor uses curated sample responses and is not connected to an AI service.</p><div class="advisor-topics"><button class="topic-chip" data-prompt="Explain ML-KEM in simple terms">What is ML-KEM?</button><button class="topic-chip" data-prompt="How does Shor's algorithm affect RSA and ECC?">Shor's algorithm</button><button class="topic-chip" data-prompt="What should my organization migrate first?">Migration priorities</button></div></div>
+        <div class="chat-card"><div class="chat-head"><div class="advisor-avatar">✳</div><div><b>QSentinal Advisor</b><small><i></i> Guided knowledge mode</small></div><span class="chat-menu">•••</span></div><div class="chat-messages" id="chatMessages" aria-live="polite"><div class="chat-message assistant"><span class="chat-avatar">Q</span><p>Hi! I can help you explore post-quantum cryptography, quantum risk and migration planning. What would you like to understand?</p></div></div><form class="chat-form" id="chatForm"><label class="sr-only" for="chatInput">Ask QSentinal Advisor</label><input id="chatInput" placeholder="Ask about quantum readiness..." autocomplete="off"><button type="submit" aria-label="Send message">↑</button></form><small class="chat-disclaimer">Curated demo responses · Not professional security advice</small></div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="learning">
+      <div class="container">
+        <div class="section-heading split-heading"><div><div class="eyebrow">11 / LEARNING HUB</div><h2>Build your quantum<br><span class="gradient-text">security fluency.</span></h2></div><p>A structured learning path from core cryptography concepts to organizational post-quantum deployment.</p></div>
+        <div class="learning-grid">
+          <article class="learning-card"><div class="learning-level">LEVEL 01 <span>BEGINNER</span></div><h3>Foundations</h3><ul><li>Cryptography fundamentals</li><li>RSA and ECC overview</li><li>Digital signatures</li></ul><div class="progress-line"><i style="width:25%"></i></div><small>Suggested starting point</small></article>
+          <article class="learning-card"><div class="learning-level">LEVEL 02 <span>INTERMEDIATE</span></div><h3>Quantum context</h3><ul><li>Quantum computing basics</li><li>Shor's algorithm</li><li>Harvest now, decrypt later</li></ul><div class="progress-line"><i style="width:50%"></i></div><small>Build threat awareness</small></article>
+          <article class="learning-card"><div class="learning-level">LEVEL 03 <span>ADVANCED</span></div><h3>PQC technologies</h3><ul><li>ML-KEM and ML-DSA</li><li>Hybrid cryptography</li><li>Migration strategies</li></ul><div class="progress-line"><i style="width:75%"></i></div><small>Understand implementation</small></article>
+          <article class="learning-card"><div class="learning-level">LEVEL 04 <span>EXPERT</span></div><h3>Deployment</h3><ul><li>PQC deployment patterns</li><li>Enterprise crypto agility</li><li>Quantum risk governance</li></ul><div class="progress-line"><i style="width:100%"></i></div><small>Operational readiness</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section architecture-section" id="architecture">
+      <div class="container">
+        <div class="section-heading centered-heading"><div class="eyebrow">12 / PLATFORM ARCHITECTURE</div><h2>One platform.<br><span class="gradient-text">Connected intelligence.</span></h2><p class="section-intro">A modular architecture connects user experiences, cryptographic operations and decision-support analytics.</p></div>
+        <div class="architecture-flow">
+          <div class="architecture-node"><span>01</span><i>▣</i><b>Frontend</b><small>Interactive web experience</small></div><div class="architecture-arrow">↓</div>
+          <div class="architecture-node"><span>02</span><i>⌘</i><b>Flask API</b><small>Application and orchestration layer</small></div><div class="architecture-arrow">↓</div>
+          <div class="architecture-node crypto-node"><span>03</span><i>◇</i><b>Cryptography engine</b><small>RSA · ECC · ML-KEM · ML-DSA</small></div><div class="architecture-arrow">↓</div>
+          <div class="architecture-bottom"><div class="architecture-node"><span>04</span><i>▥</i><b>Analytics engine</b><small>Risk scoring and benchmarking</small></div><div class="architecture-node"><span>05</span><i>◫</i><b>Visualization layer</b><small>Dashboards and reports</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-cta"><div class="container cta-inner"><div class="cta-orb">Q</div><div><div class="eyebrow">THE QUANTUM TRANSITION STARTS NOW</div><h2>Prepare for what's next.</h2><p>Understand your exposure. Build your roadmap. Move forward with confidence.</p></div><a href="#dashboard" class="button button-white">Explore QSentinal <span>↗</span></a></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-main"><div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span>QSentinal</span><sup>®</sup></a><p>Preparing security for the quantum era.</p><div class="footer-social"><a href="#home" aria-label="LinkedIn">in</a><a href="#home" aria-label="GitHub">⌘</a><a href="#home" aria-label="X">𝕏</a></div></div><div class="footer-column"><b>PRODUCT</b><a href="#threats">Threat intelligence</a><a href="#messaging">Secure messaging</a><a href="#benchmark">Benchmarking</a><a href="#migration">Migration center</a></div><div class="footer-column"><b>PLATFORM</b><a href="#algorithms">PQC algorithms</a><a href="#file-vault">File protection</a><a href="#advisor">AI advisor</a><a href="#architecture">Architecture</a></div><div class="footer-column"><b>LEARN</b><a href="#learning">Learning hub</a><a href="#kem-demo">ML-KEM lab</a><a href="#dsa-demo">ML-DSA lab</a><a href="#top">Documentation</a></div><div class="footer-column"><b>RESOURCES</b><a href="#top">About QSentinal</a><a href="#top">Contact</a><a href="#top">Privacy</a><a href="#top">Terms</a></div></div><div class="container footer-bottom"><span>© 2026 QSentinal. All rights reserved.</span><span>Preparing Security for the Quantum Era. <a href="#top">Back to top ↑</a></span></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
