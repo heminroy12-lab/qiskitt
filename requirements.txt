@@ -1,0 +1,9 @@
+# QSentinal Production Dependencies
+# Direct imports in app.py
+Flask==3.1.3
+Flask-Cors==6.0.5
+cryptography==50.0.2
+werkzeug==3.1.9
+
+# Recommended WSGI server for production Linux deployments
+# gunicorn>=23.0.0
